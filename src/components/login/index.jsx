@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { signinvalidation } from "../../validation";
 import { useNavigate } from "react-router-dom";
+import { loginbuyerapi, loginsellerapi } from "../../apis/auth/loginapi";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -25,6 +26,13 @@ export const Login = () => {
     validationSchema: signinvalidation,
     onSubmit: (values) => {
       console.log("Submitting login data:", values);
+      if (values.role === "buyer") {
+        console.log("buyer");
+        loginbuyerapi(values);
+      } else {
+        console.log("seller");
+        loginsellerapi(values);
+      }
       // Add your custom validation and form submission logic here
     },
   });
@@ -77,16 +85,6 @@ export const Login = () => {
               </p>
             }
           </div>
-          <div className="flex justify-between items-center mt-2">
-            <h6 className="text-gray-600">Don't have an account?</h6>
-            <button
-              type="button"
-              onClick={handleSignupClick}
-              className="text-blue-500 hover:text-blue-700"
-            >
-              Signup
-            </button>
-          </div>
         </div>
         <div>
           <FormControl component="fieldset" margin="normal">
@@ -119,6 +117,16 @@ export const Login = () => {
           >
             Submit
           </Button>
+        </div>
+        <div className="flex justify-between items-center mt-2">
+          <h6 className="text-gray-600">Don't have an account?</h6>
+          <button
+            type="button"
+            onClick={handleSignupClick}
+            className="text-blue-500 hover:text-blue-700"
+          >
+            Signup
+          </button>
         </div>
       </Box>
     </div>

@@ -4,14 +4,7 @@ import { Login } from "./components/login/index.jsx";
 import { Signup } from "./components/signup/index.jsx";
 
 function App() {
-  return (
-    <>
-      <Addtocart />
-      <Login />
-      <Signup />
-      heloooo
-    </>
-  );
+  return <></>;
 }
 
 export default App;
